@@ -1,2 +1,3 @@
 # phabhub
-Bot for publishing Phabricator events to GitHub
+Bot for publishing Phabricator tasks to GitHub issues
+

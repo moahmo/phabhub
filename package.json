@@ -1,0 +1,28 @@
+{
+  "name": "phabhub",
+  "version": "0.0.1",
+  "description": "Bot for publishing Phabricator events to GitHub",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moahmo/phabhub.git"
+  },
+  "keywords": [
+    "phabricator",
+    "github",
+    "tasks"
+  ],
+  "author": "Ahmet Macic <macic.ahmet@nsoft.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/moahmo/phabhub/issues"
+  },
+  "homepage": "https://github.com/moahmo/phabhub#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "request": "^2.85.0"
+  }
+}

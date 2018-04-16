@@ -1,0 +1,8 @@
+# Editor
+.idea
+
+# Dependencies
+node_modules
+
+# App Configurations
+config.json
