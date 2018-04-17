@@ -28,13 +28,11 @@ A configuration file is necessary, in this format:
     }
   }
 }
-
 ```
 
 Run the application with:
 ```
 npm run start
-
 ```
 
 ### Local environment
@@ -44,7 +42,6 @@ After cloning the repo and `npm install`, run:
 
 ```
 npm run dev
-
 ```
 
 This will run the application with lint check and live reload.
