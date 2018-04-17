@@ -23,6 +23,7 @@
   "homepage": "https://github.com/moahmo/phabhub#readme",
   "dependencies": {
     "express": "^4.16.3",
+    "lodash": "^4.17.5",
     "request": "^2.85.0"
   }
 }
