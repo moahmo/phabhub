@@ -4,34 +4,38 @@ const queryString = require('query-string');
 const phabricatorConfig = require('../config').phabricator;
 
 function stringifyParams(params) {
-    return queryString.stringify(params)
+  return queryString.stringify(params);
 }
 
 module.exports = {
-    validateTaskEvent(eventData) {
-        if (_.isObject(eventData) && eventData.object && eventData.object.type === 'TASK') {
-            return {
-                phid: eventData.object.phid
-            };
-        }
-    },
-
-    getTaskDetails(taskPhid) {
-        return request.postAsync(`${phabricatorConfig.endpoint}/maniphest.search`, {
-            form: stringifyParams({
-                'api.token': phabricatorConfig.apiToken,
-                'constraints[phids][]': [taskPhid]
-            })
-        }).then((response) => {
-            if (response.statusCode === 200) {
-                const responseBody = JSON.parse(response.body);
-
-                return responseBody.result.data[0];
-            }
-
-            throw new Error({
-                message: 'Something went wrong.'
-            });
-        });
+  validateTaskEvent(eventData) {
+    if (!_.isObject(eventData) || eventData.object || eventData.object.type === 'TASK') {
+      throw new Error({
+        message: 'Phabricator data not valid',
+      });
     }
+
+    return {
+      phid: eventData.object.phid,
+    };
+  },
+
+  getTaskDetails(taskPhid) {
+    return request.postAsync(`${phabricatorConfig.endpoint}/maniphest.search`, {
+      form: stringifyParams({
+        'api.token': phabricatorConfig.apiToken,
+        'constraints[phids][]': [taskPhid],
+      }),
+    }).then((response) => {
+      if (response.statusCode === 200) {
+        const responseBody = JSON.parse(response.body);
+
+        return responseBody.result.data[0];
+      }
+
+      throw new Error({
+        message: 'Something went wrong.',
+      });
+    });
+  },
 };

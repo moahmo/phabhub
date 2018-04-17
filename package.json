@@ -1,11 +1,12 @@
 {
   "name": "phabhub",
   "version": "0.0.1",
-  "description": "Bot for publishing Phabricator events to GitHub",
+  "description": "Service for publishing Phabricator events to GitHub",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/index --exec 'node'"
+    "dev": "nodemon src/index --exec 'npm run lint && node'",
+    "lint": "cross-env NODE_ENV=development eslint --ext .js src"
   },
   "repository": {
     "type": "git",
@@ -23,15 +24,19 @@
   },
   "homepage": "https://github.com/moahmo/phabhub#readme",
   "dependencies": {
-    "bluebird": "^3.5.1",
-    "body-parser": "^1.18.2",
-    "cors": "^2.8.4",
-    "express": "^4.16.3",
-    "lodash": "^4.17.5",
-    "query-string": "^6.0.0",
-    "request": "^2.85.0"
+    "bluebird": "~3.5.1",
+    "body-parser": "~1.18.2",
+    "cors": "~2.8.4",
+    "express": "~4.16.3",
+    "lodash": "~4.17.5",
+    "query-string": "~6.0.0",
+    "request": "~2.85.0"
   },
   "devDependencies": {
-    "nodemon": "^1.17.3"
+    "cross-env": "~5.1.4",
+    "eslint": "~4.19.1",
+    "eslint-config-airbnb-base": "~12.1.0",
+    "eslint-plugin-import": "~2.11.0",
+    "nodemon": "~1.17.3"
   }
 }
