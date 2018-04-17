@@ -1,12 +1,13 @@
 const express = require('express');
 const cors = require('cors');
+const config = require('../config');
 
 const ApplicationRouter = require('../Router/ApplicationRouter');
 
 class HttpServer {
   constructor() {
     this.server = express();
-    this.port = 7010;
+    this.port = config.server.port;
   }
 
   start() {

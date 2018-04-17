@@ -1,7 +1,11 @@
 const _ = require('lodash');
 const configStore = require('../config.json');
 
-const defaultConfig = {};
+const defaultConfig = {
+  server: {
+    port: 7070,
+  },
+};
 
 const config = _.merge(defaultConfig, configStore.settings);
 

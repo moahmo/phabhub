@@ -30,6 +30,8 @@ A configuration file is necessary, in this format:
 }
 ```
 
+Using this file, you can also override default server settings (e.g. port).
+
 Run the application with:
 ```
 npm run start
