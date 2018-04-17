@@ -13,14 +13,14 @@ function parseTaskToIssue(taskData) {
 }
 
 module.exports = {
-  publishIssueFromPhabricatorTask(taskData) {
+  async publishIssueFromPhabricatorTask(taskData) {
     return request.postAsync(`${githubConfig.endpoint}/repos/${githubConfig.user}/${githubConfig.repo}/issues`, {
       auth: {
         user: githubConfig.user,
         password: githubConfig.apiToken,
       },
       headers: {
-        'User-Agent': 'moahmo',
+        'User-Agent': githubConfig.user,
       },
       json: parseTaskToIssue(taskData),
     }).then((response) => {
