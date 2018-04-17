@@ -1,4 +1,7 @@
 const express = require('express');
+const cors = require('cors');
+
+const ApplicationRouter = require('../Router/ApplicationRouter');
 
 class HttpServer {
     constructor(options) {
@@ -9,6 +12,9 @@ class HttpServer {
     start() {
         this.server.listen(this.port);
 
+        this.server.disable('x-powered-by');
+        this.server.use(cors({ origin: true, credentials: true }));
+        this.server.use('/', ApplicationRouter);
     }
 }
 
