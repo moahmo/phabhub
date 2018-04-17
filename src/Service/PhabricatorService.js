@@ -9,7 +9,7 @@ function stringifyParams(params) {
 
 module.exports = {
   validateTaskEvent(eventData) {
-    if (!_.isObject(eventData) || eventData.object || eventData.object.type === 'TASK') {
+    if (!_.isObject(eventData) || !eventData.object || eventData.object.type !== 'TASK') {
       throw new Error({
         message: 'Phabricator data not valid',
       });

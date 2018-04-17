@@ -13,7 +13,7 @@ function parseTaskToIssue(taskData) {
 }
 
 module.exports = {
-  async publishIssueFromPhabricatorTask(taskData) {
+  publishIssueFromPhabricatorTask(taskData) {
     return request.postAsync(`${githubConfig.endpoint}/repos/${githubConfig.user}/${githubConfig.repo}/issues`, {
       auth: {
         user: githubConfig.user,
@@ -30,9 +30,7 @@ module.exports = {
         });
       }
 
-      const responseBody = JSON.parse(response.body);
-
-      return responseBody.result.data[0];
+      return true;
     });
   },
 };

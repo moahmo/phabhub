@@ -4,10 +4,12 @@ const config = require('../config');
 
 const ApplicationRouter = require('../Router/ApplicationRouter');
 
+const { PORT = config.server.port } = process.env;
+
 class HttpServer {
   constructor() {
     this.server = express();
-    this.port = config.server.port;
+    this.port = PORT;
   }
 
   start() {
