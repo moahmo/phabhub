@@ -6,7 +6,7 @@ const parseHelper = require('../Common/ParseHelper');
 module.exports = {
   getTaskDetails(taskPhid) {
     return request.postAsync(`${phabricatorConfig.endpoint}/api/maniphest.search`, {
-      form: parseHelper.stringify(({
+      form: parseHelper.stringifyQueryParams(({
         'api.token': phabricatorConfig.apiToken,
         'constraints[phids][]': [taskPhid],
       })),

@@ -24,7 +24,7 @@ module.exports = {
     };
   },
 
-  stringify(params) {
+  stringifyQueryParams(params) {
     return queryString.stringify(params);
   },
 };
