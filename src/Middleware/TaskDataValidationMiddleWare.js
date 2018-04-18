@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
     });
   }
 
-  const encodedExpectedSignature = Buffer.from(crypto.createHmac('sha256', phabricatorConfig.hmacKey).update(req.rawBody).digest();
+  const encodedExpectedSignature = crypto.createHmac('sha256', phabricatorConfig.hmacKey).update(req.rawBody).digest();
   const expectedSignature = Buffer.from(encodedExpectedSignature).toString('hex');
 
   if (requestSignature !== expectedSignature) {
