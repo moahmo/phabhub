@@ -1,3 +1,4 @@
+const queryString = require('query-string');
 const githubConfig = require('../config').github;
 const phabricatorConfig = require('../config').phabricator;
 
@@ -21,5 +22,9 @@ module.exports = {
       assignee: githubConfig.user,
       labels: issueLabels,
     };
+  },
+
+  stringify(params) {
+    return queryString.stringify(params);
   },
 };

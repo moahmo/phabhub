@@ -9,9 +9,11 @@ PhabHub is a service for publishing Phabricator tasks to GitHub issues.
 - Phabricator Webhook which, on trigger, sends a POST request to PhabHub service with task event information;
 - You have to have the service deployed somewhere. POST route is `${baseServiceUrl}/issues`. 
 
-### Deployment
+_Example deployment: deploying the service as a Lambda function with up._
 
-A configuration file is necessary, in this format:
+### Deployment
+A configuration file called `config.json` is necessary inside root project directory, in this format:
+
 ```
 {
   "settings": {
@@ -22,7 +24,7 @@ A configuration file is necessary, in this format:
       "repo": "${githubRepoName}"
     },
     "phabricator": {
-      "endpoint": "https://phabricator.example.com/api",
+      "endpoint": "https://phabricator.example.com",
       "apiToken": "${phabricatorApiToken}",
       "hmacKey": "${phabricatorWebhookHmacKey}"
     }
@@ -30,17 +32,16 @@ A configuration file is necessary, in this format:
 }
 ```
 
-Using this file, you can also override default server settings (e.g. port).
+_Using this file, you can also override default server settings from `src/config.js` (e.g. port)._
 
-Run the application with:
+Once you have everthing properly configured, run the application with:
+
 ```
 npm run start
 ```
 
 ### Local environment
-
 After cloning the repo and `npm install`, run:
-
 
 ```
 npm run dev

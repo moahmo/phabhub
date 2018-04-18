@@ -1,18 +1,20 @@
 const express = require('express');
 const phabricatorService = require('../Service/PhabricatorService');
 const githubService = require('../Service/GitHubService');
+const TaskDataValidationMiddleware = require('../Middleware/TaskDataValidationMiddleWare');
 const bodyParser = require('body-parser');
 
 const router = express.Router();
 
-router.use(bodyParser.json());
+router.use(bodyParser.json({
+  verify(req, res, buf) {
+    req.rawBody = buf.toString();
+  },
+}));
 
-router.post('/issues', (req, res) => phabricatorService.validateTaskEvent(req.body, req.headers['x-phabricator-webhook-signature'])
-  .then((validatedTaskData) => {
-    const taskId = validatedTaskData.phid;
+router.use(TaskDataValidationMiddleware);
 
-    return phabricatorService.getTaskDetails(taskId);
-  })
+router.post('/issues', (req, res) => phabricatorService.getTaskDetails(res.locals.taskId)
   .then(result => githubService.publishIssueFromPhabricatorTask(result))
   .then(() => res.send({
     message: 'Task successfully published to GitHub.',

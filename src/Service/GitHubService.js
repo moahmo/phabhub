@@ -1,7 +1,7 @@
 const request = require('request');
 const githubConfig = require('../config').github;
-const Exception = require('../Shared/Exception');
-const commonService = require('./CommonService');
+const Exception = require('../Common/Exception');
+const commonService = require('../Common/ParseHelper');
 
 module.exports = {
   publishIssueFromPhabricatorTask(taskData) {

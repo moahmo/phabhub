@@ -3,7 +3,7 @@ const configStore = require('../config.json');
 
 const defaultConfig = {
   server: {
-    port: 7010,
+    port: 7070,
   },
 };
 
