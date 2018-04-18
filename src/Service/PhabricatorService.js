@@ -18,7 +18,7 @@ module.exports = {
     }
 
     const expectedSignature = crypto.createHmac('sha256', phabricatorConfig.hmacKey).update(stringifyParams(eventData)).digest();
-    const encodedExpectedSignature = Buffer.from(expectedSignature).toString('base64');
+    const encodedExpectedSignature = Buffer.from(expectedSignature).toString('hex');
 
     if (encodedExpectedSignature !== receivedSignature) {
       throw new Exception({
