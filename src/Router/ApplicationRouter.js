@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.use(bodyParser.json());
 
-router.post('/issues', (req, res) => phabricatorService.validateTaskEvent(req.body)
+router.post('/issues', (req, res) => phabricatorService.validateTaskEvent(req.body, req.headers['x-phabricator-webhook-signature'])
   .then((validatedTaskData) => {
     const taskId = validatedTaskData.phid;
 

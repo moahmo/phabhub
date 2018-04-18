@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 const _ = require('lodash');
 const request = require('request');
 const queryString = require('query-string');
@@ -9,10 +10,19 @@ function stringifyParams(params) {
 }
 
 module.exports = {
-  validateTaskEvent(eventData) {
+  validateTaskEvent(eventData, receivedSignature) {
     if (!_.isObject(eventData) || !eventData.object || eventData.object.type !== 'TASK') {
       throw new Exception({
-        message: 'Phabricator data not valid',
+        message: 'Phabricator data not valid.',
+      });
+    }
+
+    const expectedSignature = crypto.createHmac('sha256', phabricatorConfig.hmacKey).update(stringifyParams(eventData)).digest();
+    const encodedExpectedSignature = Buffer.from(expectedSignature).toString('base64');
+
+    if (encodedExpectedSignature !== receivedSignature) {
+      throw new Exception({
+        message: 'Phabricator event source not valid.',
       });
     }
 
