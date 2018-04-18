@@ -1,16 +1,7 @@
 const request = require('request');
 const githubConfig = require('../config').github;
-
-function parseTaskToIssue(taskData) {
-  return {
-    title: taskData.fields.name,
-    body: taskData.fields.description.raw,
-    assignee: githubConfig.user,
-    labels: [
-      'bug',
-    ],
-  };
-}
+const Exception = require('../Shared/Exception');
+const commonService = require('./CommonService');
 
 module.exports = {
   publishIssueFromPhabricatorTask(taskData) {
@@ -22,11 +13,12 @@ module.exports = {
       headers: {
         'User-Agent': githubConfig.user,
       },
-      json: parseTaskToIssue(taskData),
+      json: commonService.parseTaskToIssue(taskData),
     }).then((response) => {
       if (response.statusCode !== 201) {
-        throw new Error({
-          message: 'Something went wrong.',
+        throw new Exception({
+          message: 'Could not publish to GitHub.',
+          details: response.body,
         });
       }
 

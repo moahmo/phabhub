@@ -7,18 +7,16 @@ const router = express.Router();
 
 router.use(bodyParser.json());
 
-router.post('/issues', (req, res) => {
-  const validatedTaskData = phabricatorService.validateTaskEvent(req.body);
-  const taskId = validatedTaskData.phid;
+router.post('/issues', (req, res) => phabricatorService.validateTaskEvent(req.body)
+  .then((validatedTaskData) => {
+    const taskId = validatedTaskData.phid;
 
-  return phabricatorService.getTaskDetails(taskId)
-    .then(result => githubService.publishIssueFromPhabricatorTask(result))
-    .then(() => res.send({
-      message: 'Success',
-    }))
-    .catch(error => res.status(400).send({
-      details: error,
-    }));
-});
+    return phabricatorService.getTaskDetails(taskId);
+  })
+  .then(result => githubService.publishIssueFromPhabricatorTask(result))
+  .then(() => res.send({
+    message: 'Task successfully published to GitHub.',
+  }))
+  .catch(exception => res.status(400).send(exception)));
 
 module.exports = router;

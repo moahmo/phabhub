@@ -7,7 +7,7 @@ PhabHub is a service for publishing Phabricator tasks to GitHub issues.
 ### Preconditions
 - Phabricator Herald rule which, based on certain task-related conditions, triggers the Phabricator Webhook;
 - Phabricator Webhook which, on trigger, sends a POST request to PhabHub service with task event information;
-- You have to have the service deployed somewhere. POST route is `${baseServiceUrl}/issues`.
+- You have to have the service deployed somewhere. POST route is `${baseServiceUrl}/issues`. 
 
 ### Deployment
 
