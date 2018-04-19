@@ -53,8 +53,7 @@ This will run the application with lint check and live reload.
 You can add advanced rules for publishing issues to different repositories, and adding different issue labels.
 
 Example from `config.json`:
-```
-// config.json
+```javascript
 {
   "settings": {
     "github": {
