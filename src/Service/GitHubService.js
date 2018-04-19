@@ -29,16 +29,6 @@ function parseTaskToIssue({ taskId, taskFields, phabInstance }) {
 
       return false;
     }));
-
-    [repositoryName] = _.filter(_.map(repositoryNameRules, (rule) => {
-      if (rule.type === 'startsWith') {
-        if (startsWithRuleIsMatched(issueTitle, rule.match)) {
-          return rule.repositoryName;
-        }
-      }
-
-      return false;
-    }));
   }
 
   // Get label name based on task title rules
