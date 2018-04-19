@@ -1,7 +1,7 @@
 # PhabHub
 
 ### About
-PhabHub is a service for publishing Phabricator tasks to GitHub issues.
+PhabHub is a service for publishing [Phabricator](https://github.com/phacility/phabricator) tasks as GitHub issues.
 
 
 ### Preconditions
@@ -9,7 +9,7 @@ PhabHub is a service for publishing Phabricator tasks to GitHub issues.
 - Phabricator Webhook which, on trigger, sends a POST request to PhabHub service with task event information;
 - You have to have the service deployed somewhere. POST route is `${baseServiceUrl}/issues`. 
 
-_Example deployment: deploying the service as a Lambda function with up._
+_Example deployment: deploying it servelessly as an AWS Lambda function with [Up](https://github.com/apex/up)._
 
 ### Deployment
 A configuration file called `config.json` is necessary inside root project directory, in this format:
