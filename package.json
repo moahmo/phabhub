@@ -30,7 +30,6 @@
     "cors": "~2.8.4",
     "express": "~4.16.3",
     "lodash": "~4.17.5",
-    "query-string": "~6.0.0",
     "request": "~2.85.0"
   },
   "devDependencies": {

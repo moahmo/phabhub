@@ -1,6 +1,9 @@
 const crypto = require('crypto');
 const _ = require('lodash');
-const phabricatorConfig = require('../config').phabricator;
+const config = require('../config');
+
+const phabricatorConfig = config.phabricator;
+const environmentConfig = config.environment;
 
 module.exports = (req, res, next) => {
   const eventData = req.body;
@@ -9,6 +12,13 @@ module.exports = (req, res, next) => {
   if (!_.isObject(eventData) || !eventData.object || eventData.object.type !== 'TASK') {
     return res.status(400).send({
       message: 'Phabricator data not valid.',
+    });
+  }
+
+  // Check if it's a test action and test mode is enabled
+  if (eventData.action && eventData.action.test && !environmentConfig.testMode) {
+    return res.status(400).send({
+      message: 'Test mode is not enabled.',
     });
   }
 
