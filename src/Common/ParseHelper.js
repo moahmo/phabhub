@@ -17,8 +17,8 @@ module.exports = {
     return {
       title: issueTitle,
       body: `${issueDescription}
-             -----------
-             <i>Automatically created from ${phabricatorConfig.endpoint}/T${taskData.id}</i>`,
+             \n-----------
+             \n<i>Automatically created from ${phabricatorConfig.endpoint}/T${taskData.id}</i>`,
       assignee: githubConfig.user,
       labels: issueLabels,
     };

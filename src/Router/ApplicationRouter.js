@@ -1,7 +1,7 @@
 const express = require('express');
 const phabricatorService = require('../Service/PhabricatorService');
 const githubService = require('../Service/GitHubService');
-const TaskDataValidationMiddleware = require('../Middleware/TaskDataValidationMiddleWare');
+const TaskDataValidationMiddleware = require('../Middleware/TaskDataValidationMiddleware');
 const bodyParser = require('body-parser');
 
 const router = express.Router();

@@ -1,9 +1,9 @@
 class Exception extends Error {
-  constructor(exception) {
+  constructor({ message, details }) {
     super();
 
-    this.message = exception.message;
-    this.details = exception.details || [];
+    this.message = message;
+    this.details = details || [];
   }
 }
 
