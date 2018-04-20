@@ -50,7 +50,7 @@ function parseTaskToIssue({ taskId, taskFields, phabInstance }) {
       body: `${issueDescription}
              \n-----------
              \n<i>Automatically created from ${phabInstance}/T${taskId}</i>`,
-      assignee: githubConfig.user,
+      assignee: githubConfig.repoUserName,
       labels: issueLabels,
     },
     repository: repositoryName || githubConfig.repositoryName,
@@ -65,13 +65,15 @@ module.exports = {
       phabInstance: taskData.phabInstance,
     });
 
-    return request.postAsync(`${githubConfig.endpoint}/repos/${githubConfig.user}/${issue.repository}/issues`, {
+    const apiUser = githubConfig.apiUserName || githubConfig.repoUserName;
+
+    return request.postAsync(`${githubConfig.endpoint}/repos/${githubConfig.repoUserName}/${issue.repository}/issues`, {
       auth: {
-        user: githubConfig.user,
+        user: apiUser,
         password: githubConfig.apiToken,
       },
       headers: {
-        'User-Agent': githubConfig.user,
+        'User-Agent': apiUser,
       },
       json: issue.data,
     }).then((response) => {

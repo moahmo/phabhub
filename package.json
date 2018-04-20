@@ -1,6 +1,6 @@
 {
   "name": "phabhub",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Service for publishing Phabricator events to GitHub",
   "main": "src/index.js",
   "scripts": {

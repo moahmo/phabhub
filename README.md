@@ -20,7 +20,8 @@ A configuration file called `config.json` is necessary inside root project direc
     "github": {
       "endpoint": "https://api.github.com",
       "apiToken": "${githubApiToken}",
-      "user": "${githubUserName}",
+      "apiUserName": "${githubApiUserName}",
+      "repoUserName": "${githubRepoUserNameAlsoFallbackForApiUserName}",
       "repositoryName": "${githubRepoName}"
     },
     "phabricator": {
