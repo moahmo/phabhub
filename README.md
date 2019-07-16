@@ -1,8 +1,7 @@
 # PhabHub
 
 ### About
-PhabHub is a service for publishing [Phabricator](https://github.com/phacility/phabricator) tasks as GitHub issues.
-
+PhabHub is an integration service for publishing newly-created [Phabricator](https://github.com/phacility/phabricator) tasks as GitHub repository issues.
 
 ### Preconditions
 - Phabricator Herald rule which, based on certain task-related conditions, triggers the Phabricator Webhook;
@@ -11,7 +10,7 @@ PhabHub is a service for publishing [Phabricator](https://github.com/phacility/p
 
 _Example deployment: serverless, as an AWS Lambda function with [Up](https://github.com/apex/up)._
 
-### Deployment
+### Configuration and Deployment
 A configuration file called `config.json` is necessary inside root project directory, in this basic format:
 
 ```
